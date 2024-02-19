@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/team">Team</a></li>
+           
+        </ul>
+    </nav>
+    <div>
+    <h1>Create Player</h1>
+    
+      
+    <form action="/players" method="POST">
+        <label for="name">Playername:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="nickName">Nickname:</label>
+        <input type="text" id="nickName" name="nickName" required>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" required>
+        <button type="submit" id="button">Submit</button>
+    </form>
+</div>
+
+<!-- <script>
+    document.getElementById("button").addEventListener("submit", function(event) {
+        // Get values from inputs
+    let nameValue = document.getElementById("name").value;
+    let nickNameValue = document.getElementById("nickName").value;
+    let genderValue = document.getElementById("gender").value;
+
+    let newPlayer = {
+        name: nameValue,
+        nickName: nickNameValue,
+        gender: genderValue 
+    };
+    console.log(newPlayer);
+        // event.preventDefault(); // Prevent the default form submission
+      
+        // fetch("/data/players", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({ newPlayer })
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         // Handle success, e.g., show a success message to the user
+        //         console.log("User created successfully");
+        //     } else {
+        //         // Handle errors, e.g., show an error message to the user
+        //         console.error("Failed to create user");
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error("An error occurred:", error);
+        // });
+    });
+</script> -->
+</body>
+</html>
