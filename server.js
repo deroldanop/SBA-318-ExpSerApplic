@@ -4,7 +4,7 @@ const path = require('path');
 
 const players = require("./data/players");
 const posts = require("./data/posts");
-
+const router = require('./routes/players')
 const app = express();
 const PORT = 5500;
 
@@ -13,6 +13,7 @@ const PORT = 5500;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
+app.use('/players', router);
 
 // Set the views directory
 app.set('views', path.join(__dirname, 'views'));
@@ -32,23 +33,43 @@ app.get('/team', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'team.html'));
 });
 
-// POST route to create a user
-app.post('/players', (req, res) => {
-  const  newPlayer  = req.body;
-  console.log(players);
-  players.push(newPlayer);
-  res.redirect('/');
-});
+// POST route to create a player
+//   app.post('/players', (req, res) => {
+// const newPlayer = {
+//   id: players[players.length - 1].id + 1,
 
-// GET route to fetch all users
+//   name: req.body.name,
+//   nickName: req.body.nickName,
+//   gender: req.body.gender,
+// };
+// players.push(newPlayer);
+// res.redirect('/team');
+//   });
+
+// app.post('/players', (req, res) => {
+  
+//   const  newPlayer  = req.body;
+  
+//   console.log(players);
+//   players.push(newPlayer);
+//   res.redirect('/team');
+// });
+
+// GET route to fetch all players
 app.get('/players', (req, res) => {
-  //res.json();
+  
   res.json(players);
+  
 });
+// app.get('/players', (req, res) => {
+//   res.send(`<h2>This is the team for the nex game </h2>`);
+
+// });
+
 // document.getElementById("button").addEventListener("click", function() {
 //   addPlayer("Are you a new player");
 // }, true);
 
-app.listen(PORT, () => {
+app.listen(PORT, 'localhost', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -15,10 +15,12 @@ router
       },
     ];
 
-    res.json({ players, links });
+    //res.json({ players, links });
+    res.json({ players});
   })
   .post((req, res, next) => {
-    if (req.body.playerId && req.body.content ) {
+    //if (req.body.playerId && req.body.content ) {
+      if ( true ) {
       if (players.find((u) => u.nickName == req.body.nickName)) {
         next(error(409, "Nickame Already Taken"));
       }
@@ -32,7 +34,11 @@ router
       };
 
       players.push(player);
-      res.json(players[players.length - 1]);
+      // if(players.length === 4 ){
+
+      // }
+      //res.json(players[players.length - 1]);
+      res.redirect('/players');
     } else next(error(400, "Insufficient Data"));
   });
 
