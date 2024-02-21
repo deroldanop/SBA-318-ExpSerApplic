@@ -3,6 +3,7 @@ const router = express.Router();
 
 const players = require("../data/players");
 const error = require("../utilities/error");
+const rot = express();
 
 router
   .route("/")
@@ -32,13 +33,19 @@ router
         nickName: req.body.nickName,
         gender: req.body.gender,
       };
+      if(players.length >= 4 ){
+        rot.get('/gameReady', (req, res) => {
+            //res.sendFile(`./views/gameReady.html`, {root: __dirname });
+            res.redirect('/gameReady')
+        
+        })} else{
 
       players.push(player);
       // if(players.length === 4 ){
 
       // }
       //res.json(players[players.length - 1]);
-      res.redirect('/players');
+        res.redirect('/players');}
     } else next(error(400, "Insufficient Data"));
   });
 

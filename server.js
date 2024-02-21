@@ -33,6 +33,8 @@ app.get('/team', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'team.html'));
 });
 
+
+
 // POST route to create a player
 //   app.post('/players', (req, res) => {
 // const newPlayer = {
@@ -55,12 +57,20 @@ app.get('/team', (req, res) => {
 //   res.redirect('/team');
 // });
 
-// GET route to fetch all players
+//GET route to fetch all players
 app.get('/players', (req, res) => {
-  
+  if(players.length >= 4){
+    app.get('/gameReady', (req, res) => {
+        res.sendFile(`./views/gameReady.html`, { root: __dirname });
+
+    
+    })} else{
+
+  players.push(player);
+
   res.json(players);
-  
-});
+    
+  }});
 // app.get('/players', (req, res) => {
 //   res.send(`<h2>This is the team for the nex game </h2>`);
 
@@ -73,3 +83,9 @@ app.get('/players', (req, res) => {
 app.listen(PORT, 'localhost', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+// This function is specifically designed to serve static files, such as images, CSS files, JavaScript files, etc., from a directory.
+// express.static()
+
+// //require(”http”).createServer((req, res) => res.end(”Hello World”)).listen(3000);
