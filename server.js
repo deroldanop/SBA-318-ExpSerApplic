@@ -89,3 +89,5 @@ app.listen(PORT, 'localhost', () => {
 // express.static()
 
 // //require(”http”).createServer((req, res) => res.end(”Hello World”)).listen(3000);
+
+//Need delete router and putch router and use param
