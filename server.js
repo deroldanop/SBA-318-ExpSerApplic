@@ -33,9 +33,15 @@ app.get('/team', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'team.html'));
 });
 
+//Route to render the gameReady page
+app.get('/gameReady', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'gameReady.html'));
+  
+});
 
 
-// POST route to create a player
+
+//// POST route to create a player
 //   app.post('/players', (req, res) => {
 // const newPlayer = {
 //   id: players[players.length - 1].id + 1,
@@ -58,19 +64,19 @@ app.get('/team', (req, res) => {
 // });
 
 //GET route to fetch all players
-app.get('/players', (req, res) => {
-  if(players.length >= 4){
-    app.get('/gameReady', (req, res) => {
-        res.sendFile(`./views/gameReady.html`, { root: __dirname });
+// app.get('/players', (req, res) => {
+//   if(players.length >= 4){
+//     app.get('./gameReady', (req, res) => {
+//         res.sendFile(`/views/gameReady.html`, { root: __dirname });
 
     
-    })} else{
+//     })} else{
 
-  players.push(player);
+//   players.push(player);
 
-  res.json(players);
+//   res.json(players);
     
-  }});
+//   }});
 // app.get('/players', (req, res) => {
 //   res.send(`<h2>This is the team for the nex game </h2>`);
 
