@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const fs = require('fs');
+
 const players = require("./data/players");
 const posts = require("./data/posts");
 const router = require('./routes/players')
@@ -18,7 +20,7 @@ app.use('/players', router);
 // Set the views directory
 app.set('views', path.join(__dirname, 'views'));
 // Set the view engine to use HTML files
-app.set('view engine', 'html');
+app.set('view engine', 'html','ejs');
 // Dummy data
 //let players = [];
 
@@ -36,10 +38,28 @@ app.get('/team', (req, res) => {
 //Route to render the gameReady page
 app.get('/gameReady', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'gameReady.html'));
-  
 });
 
+///////
+// //const jsonPlayers = JSON.stringify(players, null, 2);
+// const uu = "Hello We are 4"
+// app.get('/gameReady', function(req, res) {
+//   // Read the JSON file
+//   // fs.readFile('jsonPlayers', 'utf8', function(err, jsonPlayers) {
+//   //   if (err) {
+//   //     console.error('Error reading JSON file:', err);
+//   //     return res.status(500).send('Error reading JSON file');
+//   //   }
 
+//   res.render('gameReady', {uu: uu});
+
+//     // Parse the JSON data
+//     //const jsonData = JSON.parse(jsonPlayers);
+
+//     // Render the template and pass the JSON data to it
+//     //res.render('/gameReady', { jsonData: jsonData });
+//   });
+// //});
 
 //// POST route to create a player
 //   app.post('/players', (req, res) => {
@@ -89,11 +109,3 @@ app.get('/gameReady', (req, res) => {
 app.listen(PORT, 'localhost', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
-// This function is specifically designed to serve static files, such as images, CSS files, JavaScript files, etc., from a directory.
-// express.static()
-
-// //require(”http”).createServer((req, res) => res.end(”Hello World”)).listen(3000);
-
-//Need delete router and putch router and use param
